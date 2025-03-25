@@ -1,0 +1,54 @@
+_BASE_: "./Base-RCNN-C4.yaml"
+OUTPUT_DIR: "output/output_fcs_4cc/FS_res50_A_B"
+MODEL:
+  DEVICE: "cuda"
+  WEIGHTS: output/output_fcs_4cc/FS_res50_A_B/model_0009999.pth #"detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  META_ARCHITECTURE: "DAobjTwoStagePseudoLabGeneralizedRCNN"
+  BACKBONE:
+    NAME: "build_resnet_backbone"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+  PROPOSAL_GENERATOR:
+    NAME: "PseudoLabRPN"
+  # RPN:
+  #   IN_FEATURES: ["res2", "res3", "res4", "res5"]
+  ROI_HEADS:
+    NAME: "StandardROIHeadsPseudoLab"
+    NUM_CLASSES: 9
+    # IN_FEATURES: ["res2", "res3", "res4", "res5"]
+  ROI_BOX_HEAD:
+    NAME: "FastRCNNConvFCHead"
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+  PIXEL_MEAN: [123.675, 116.280, 103.530]
+  PIXEL_STD: [58.395, 57.120, 57.375]
+SOLVER:
+  LR_SCHEDULER_NAME: "WarmupTwoStageMultiStepLR"
+  STEPS: (60000, 80000, 90000, 360000)
+  FACTOR_LIST: (1, 1, 1, 1, 1)
+  MAX_ITER: 10000
+  IMG_PER_BATCH_LABEL: 2
+  IMG_PER_BATCH_UNLABEL: 2
+  BASE_LR: 0.01
+  CHECKPOINT_PERIOD: 5000
+DATALOADER:
+  SUP_PERCENT: 100.0
+DATASETS:
+  CROSS_DATASET: True
+  TRAIN_LABEL: ("4cc_A_train", "4cc_B_train",)
+  TRAIN_UNLABEL: ("4cc_A_train", "4cc_B_train",)
+  TEST: ("4cc_B_test",)
+SEMISUPNET:
+  Trainer: "ateacher"
+  BBOX_THRESHOLD: 0.8
+  TEACHER_UPDATE_ITER: 1
+  BURN_UP_STEP: 10000 # when iter > BURN_UP_STEP, start teacher model learning, else, supervised train students model only.
+  EMA_KEEP_RATE: 0.9996
+  UNSUP_LOSS_WEIGHT: 1.0
+  SUP_LOSS_WEIGHT: 1.0
+  DIS_TYPE: "res4"
+TEST:
+  EVAL_PERIOD: 1000
+INPUT:
+  FORMAT: "RGB"
