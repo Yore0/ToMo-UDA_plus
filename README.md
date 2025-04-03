@@ -42,11 +42,25 @@ Follow the [INSTALL.md](https://github.com/facebookresearch/detectron2/blob/mast
 
 1. Download the datasets
    
+   | FUSSD<sup>3</sup> Dataset       |          |
+   |----------------------------------|----------|
+   | **Annotated Images**             | 4,654    |
+   | **Resolution**                   | 480-1080p|
+   | **Views**                        | 1        |
+   
+   | **Structure**                    | **Abbreviation** |
+   |----------------------------------|------------------|
+   | Skin Contour                     | SC               |
+   | Vertebral Arch Ossification Center | VAO           |
+   | Medulla Spinalis                 | MS               |
+   | Medullary Cone                   | MC               |
+   | Vertebral Ossification Center    | VOC              |
+   | Spinal End                       | SE               |
    
    <a href="https://drive.google.com/drive/folders/1pZ-B_Tnu2qnuYZKO1XDHG9dGe8BGyVX7?usp=drive_link">FUSSD<sup>3</sup></a> is a pure cross-device detection released dataset collected from Samsung (SA), Philips (PH), and GE devices with numbers of 1882, 1510, and 1262, respectively, and is labeled with 6 anatomy regions, which is the first benchmark for the structure detection of pure cross-multi-device.
 
 
-2. Organize the dataset as the COCO annotation format.
+3. Organize the dataset as the COCO annotation format.
 
 ## Training
 
