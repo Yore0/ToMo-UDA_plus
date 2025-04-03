@@ -1,5 +1,7 @@
-# ToMo-UDA_plus
-ToMo-UDA++:Unsupervised Domain Adaptation for Anatomical Structure Detection Using Enhanced Topology and Morphology Knowledge
+# ToMo-UDA++
+ToMo-UDA++:Unsupervised Domain Adaptation for Anatomical Structure Detection Using Enhanced Topology and Morphology Knowledge - *Under Review*
+
+**Notice**: This code repository is currently under peer review for IJCV. Please treat this as a preliminary version.
 
 
 ## PostScript
@@ -68,14 +70,18 @@ python train_net.py \
 
 ## Evaluation
 
+Download the ```CHECKPOINT``` <a href="https://drive.google.com/drive/folders/1pZ-B_Tnu2qnuYZKO1XDHG9dGe8BGyVX7?usp=drive_link">here</a>.
 ```shell
 python train_net.py \
       --eval-only \
       --num-gpus 1 \
       --config configs/test_res.yaml \
-      MODEL.WEIGHTS <your weight>.pth
+      MODEL.WEIGHTS <CHECKPOINT>.pth
 ```
 
-## Results and Model Weights
 
-We will publish the model weights soon.
+## Important Notes for Reviewers
+- This code is provided for review purposes only and may undergo further refinement before final publication.
+- Some implementation details might be adjusted based on reviewer feedback.
+- For any questions regarding the code or reproduction of results, please contact: [lvxg@stu.ahu.edu.cn](mailto:lvxg@stu.ahu.edu.cn).
+
