@@ -94,8 +94,4 @@ python train_net.py \
 ```
 
 
-## Important Notes for Reviewers
-- This code is provided for review purposes only and may undergo further refinement before final publication.
-- Some implementation details might be adjusted based on reviewer feedback.
-- For any questions regarding the code or reproduction of results, please contact: [lvxg@stu.ahu.edu.cn](mailto:lvxg@stu.ahu.edu.cn).
 
